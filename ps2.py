@@ -168,10 +168,10 @@ class BinarySearchTree:
             # instantiate node to be rotated "up": new top node
             new_top = top.right
 
-            # @LIYA new: update size of top
-            temp = top.size
+            # NEW: update size of top and new_top
+            # temp = top.size
             top.size -= new_top.size
-            new_top.size += temp
+            new_top.size += top.size
             if new_top.left != None:
                 top.size += new_top.left.size
 
@@ -195,9 +195,9 @@ class BinarySearchTree:
             new_top = top.left
 
             # @LIYA new: update size of top
-            temp = top.size
+            # temp = top.size
             top.size -= new_top.size
-            new_top.size += temp
+            new_top.size += top.size
             if new_top.right != None:
                 top.size += new_top.right.size
 
