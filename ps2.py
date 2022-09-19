@@ -157,6 +157,8 @@ class BinarySearchTree:
        11 
     '''
     def rotate(self, direction, child_side):
+
+        # THERE'S ONE MISTAKE IN HERE!
         
         if child_side == "L":
             top = self.left
@@ -165,6 +167,13 @@ class BinarySearchTree:
         if direction == "L":
             # instantiate node to be rotated "up": new top node
             new_top = top.right
+
+            # @LIYA new: update size of top
+            temp = top.size
+            top.size -= new_top.size
+            new_top.size += temp
+            if new_top.left != None:
+                top.size += new_top.left.size
 
             # set new_top's left subtree to previous top's right subtree
             top.right = new_top.left
@@ -177,9 +186,20 @@ class BinarySearchTree:
             # set previous top to be left child of new_top
             new_top.left = top
 
+            # new size change
+            
+            new_top.size
+
         else: 
             # instantiate node to be rotated "up": new top node
             new_top = top.left
+
+            # @LIYA new: update size of top
+            temp = top.size
+            top.size -= new_top.size
+            new_top.size += temp
+            if new_top.right != None:
+                top.size += new_top.right.size
 
             # turn new_top's right subtree into previous top's left subtree
             top.left = new_top.right
