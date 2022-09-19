@@ -51,7 +51,7 @@ class BinarySearchTree:
     ind: a number between 0 and n-1 (the number of nodes/objects)
     returns BinarySearchTree/Node or None
     '''
-    # # INCORRECT by the Roughgarden algorithm!
+    # # INCORRECT version
     # def select(self, ind):
     #     left_size = 0
     #     if self.left is not None:
@@ -64,7 +64,7 @@ class BinarySearchTree:
     #         return self.right.select(ind)
     #     return None
 
-    # CORRECT FOR CALC FOR THE RIGHT SUBTREE
+    # CORRECT version
     def select(self, ind):
         left_size = 0
         if self.left is not None:
@@ -76,20 +76,6 @@ class BinarySearchTree:
         if left_size < ind and self.right is not None:
             return self.right.select(ind - left_size - 1)       # changed this part: check the tests
         return None
-    
-
-    # # ROUGHGARDEN
-    # def select(self, ind):
-    #     left_size = 0
-    #     if self.left is not None:
-    #         left_size = self.left.size
-    #     if ind == left_size + 1:
-    #         return self
-    #     if ind < left_size + 1 and self.left is not None:
-    #         return self.left.select(ind)
-    #     if left_size + 1 < ind and self.right is not None:
-    #         return self.right.select(ind - left_size - 1)
-    #     return None
 
 
     '''
@@ -157,8 +143,6 @@ class BinarySearchTree:
        11 
     '''
     def rotate(self, direction, child_side):
-
-        # THERE'S ONE MISTAKE IN HERE!
         
         if child_side == "L":
             top = self.left
@@ -168,8 +152,7 @@ class BinarySearchTree:
             # instantiate node to be rotated "up": new top node
             new_top = top.right
 
-            # NEW: update size of top and new_top
-            # temp = top.size
+            # update size of top and new_top
             top.size -= new_top.size
             new_top.size += top.size
             if new_top.left != None:
@@ -186,16 +169,11 @@ class BinarySearchTree:
             # set previous top to be left child of new_top
             new_top.left = top
 
-            # new size change
-            
-            new_top.size
-
         else: 
             # instantiate node to be rotated "up": new top node
             new_top = top.left
 
-            # @LIYA new: update size of top
-            # temp = top.size
+            # update size of top and new_top
             top.size -= new_top.size
             new_top.size += top.size
             if new_top.right != None:
